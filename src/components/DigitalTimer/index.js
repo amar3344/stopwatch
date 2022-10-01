@@ -2,7 +2,18 @@ import {Component} from 'react'
 import './index.css'
 
 class DigitalTimer extends Component {
-  state = {timer: 25, isRunning: false}
+  state = {timer: 25, isRunning: false, timerRunningStatus: ''}
+
+  setTimeIntervalFun = () => {
+    setInterval(() => {
+      this.setState(prevState => ({timer: prevState.timer - 1}))
+    }, 1000)
+  }
+
+  clearIntervalFun = () => {
+    const {timerRunningStatus} = this.state
+    clearInterval(timerRunningStatus)
+  }
 
   getResetTimer = () => {
     this.setState({timer: 25})
@@ -27,6 +38,9 @@ class DigitalTimer extends Component {
       ? 'https://assets.ccbp.in/frontend/react-js/pause-icon-img.png'
       : 'https://assets.ccbp.in/frontend/react-js/play-icon-img.png'
     const pauseAndRunning = isRunning ? 'Running' : 'Paused'
+    const runningStatus = isRunning
+      ? this.setTimeIntervalFun()
+      : this.clearIntervalFun()
 
     return (
       <div className="main-container">
@@ -35,7 +49,7 @@ class DigitalTimer extends Component {
           <div className="timer-container ">
             <div className="image-container">
               <div className="stop-watch-container">
-                <p className="time-text">{!isRunning && Math.floor(timer)}</p>
+                <p className="time-text">{runningStatus}</p>
                 <p className="text-paused-running">{pauseAndRunning}</p>
               </div>
             </div>
