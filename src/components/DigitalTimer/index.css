@@ -1,0 +1,149 @@
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.bg-container {
+  background-image: linear-gradient(to right, #ffffff, #cffcf1, #defafe);
+  width: 80%;
+  height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  font-size: 30px;
+  font-weight: 500;
+  font-family: 'Roboto';
+  color: #1e293b;
+}
+
+.timer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image-container {
+  background-image: url('https://assets.ccbp.in/frontend/react-js/digital-timer-elapsed-bg.png');
+  background-size: cover;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stop-watch-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+
+.text-paused-running {
+  color: #000000;
+  font-size: 15px;
+  font-family: 'Roboto';
+  font-weight: bold;
+  margin-top: -50px;
+  padding: 10px;
+}
+
+.time-text {
+  font-size: 35px;
+  color: #00d9f5;
+  font-family: 'Roboto';
+}
+
+.start-reset {
+  display: flex;
+  flex-direction: row;
+}
+
+.start-reset-image {
+  width: 25px;
+  height: 25px;
+  background-size: cover;
+  color: #00d9f5;
+}
+
+.start-reset-text {
+  font-size: 18px;
+  font-weight: 500;
+  font-family: 'Roboto';
+  color: #000000;
+}
+
+.start-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.reset-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.set-timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.set-timer-text {
+  font-size: 12px;
+  font-weight: bold;
+  font-family: 'Roboto';
+  color: #000000;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: -20px;
+}
+
+.timer-text {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+  width: 75px;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 0px;
+  color: #000000;
+  background-color: #00d9f5;
+}
+
+.button {
+  font-size: 20px;
+  font-weight: bold;
+  width: 25px;
+  height: 25px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.button-start {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
