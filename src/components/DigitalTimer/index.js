@@ -2,45 +2,87 @@ import {Component} from 'react'
 import './index.css'
 
 class DigitalTimer extends Component {
-  state = {timer: 25, isRunning: false, timerRunningStatus: ''}
-
-  setTimeIntervalFun = () => {
-    setInterval(() => {
-      this.setState(prevState => ({timer: prevState.timer - 1}))
-    }, 1000)
+  state = {
+    timer: 25,
+    isRunning: false,
+    timeElapsedInSeconds: 0,
   }
 
-  clearIntervalFun = () => {
-    const {timerRunningStatus} = this.state
-    clearInterval(timerRunningStatus)
+  componentWillUnmount() {
+    this.clearTimerInterval()
   }
 
-  getResetTimer = () => {
-    this.setState({timer: 25})
+  clearTimerInterval = () => clearInterval(this.intervalId)
+
+  substractOnTimer = () => {
+    const {timer} = this.state
+
+    if (timer > 1) {
+      this.setState(prevState => ({
+        timer: prevState.timer - 1,
+      }))
+    }
   }
 
   addingOnTimer = () => {
     this.setState(prevState => ({timer: prevState.timer + 1}))
   }
 
-  substractOnTimer = () => {
-    this.setState(prevState => ({timer: prevState.timer - 1}))
+  getResetTimer = () => {
+    this.clearTimerInterval()
+    this.setState({timer: 25, isRunning: false, timeElapsedInSeconds: 0})
+  }
+
+  incrementTimeElapsedInSeconds = () => {
+    const {timer, timeElapsedInSeconds} = this.state
+    const isTimerCompleted = timeElapsedInSeconds === timer * 60
+
+    if (isTimerCompleted) {
+      this.clearTimerInterval()
+      this.setState({isRunning: false})
+    } else {
+      this.setState(prevState => ({
+        timeElapsedInSeconds: prevState.timeElapsedInSeconds + 1,
+      }))
+    }
   }
 
   startAndPauseTimer = () => {
+    const {timer, isRunning, timeElapsedInSeconds} = this.state
+    const isTimerComplete = timeElapsedInSeconds === timer * 60
+
+    if (isTimerComplete) {
+      this.setState({timeElapsedInSeconds: 0})
+    }
+
+    if (isRunning) {
+      this.clearTimeInterval()
+    } else {
+      this.intervalId = setInterval(this.incrementTimeElapsedInSeconds, 1000)
+    }
     this.setState(prevState => ({isRunning: !prevState.isRunning}))
   }
 
+  getElapsedSecondsInTimeFormat = () => {
+    const {timer, timeElapsedInSeconds} = this.state
+    const totalRemaingSeconds = timer * 60 - timeElapsedInSeconds
+
+    const minutes = Math.flooor(totalRemaingSeconds / 60)
+    const seconds = Math.floor(totalRemaingSeconds % 60)
+    const stringifiedMinutes = minutes > 9 ? minutes : `0${minutes}`
+    const stringifiedSeconds = seconds > 9 ? seconds : `0${seconds}`
+
+    return `${stringifiedMinutes} : ${stringifiedSeconds}`
+  }
+
   render() {
-    const {timer, isRunning} = this.state
+    const {timer, isRunning, timeElapsedInSeconds} = this.state
     const startAndPause = isRunning ? 'Pause' : 'Start'
     const imageStartAndPause = isRunning
       ? 'https://assets.ccbp.in/frontend/react-js/pause-icon-img.png'
       : 'https://assets.ccbp.in/frontend/react-js/play-icon-img.png'
     const pauseAndRunning = isRunning ? 'Running' : 'Paused'
-    const runningStatus = isRunning
-      ? this.setTimeIntervalFun()
-      : this.clearIntervalFun()
+    const isButtonsDisabled = timeElapsedInSeconds > 0
 
     return (
       <div className="main-container">
@@ -49,7 +91,9 @@ class DigitalTimer extends Component {
           <div className="timer-container ">
             <div className="image-container">
               <div className="stop-watch-container">
-                <p className="time-text">{runningStatus}</p>
+                <p className="time-text">
+                  {this.getElapsedSecondsInTimeFormat()}
+                </p>
                 <p className="text-paused-running">{pauseAndRunning}</p>
               </div>
             </div>
@@ -91,6 +135,7 @@ class DigitalTimer extends Component {
                   <button
                     type="button"
                     className="button"
+                    disabled={isButtonsDisabled}
                     onClick={this.substractOnTimer}
                   >
                     -
@@ -100,6 +145,7 @@ class DigitalTimer extends Component {
                     type="button"
                     className="button"
                     onClick={this.addingOnTimer}
+                    disabled={isButtonsDisabled}
                   >
                     +
                   </button>
