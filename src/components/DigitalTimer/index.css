@@ -1,48 +1,90 @@
-.main-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-}
-
-.bg-container {
-  background-image: linear-gradient(to right, #ffffff, #cffcf1, #defafe);
-  width: 80%;
-  height: 100vh;
-  padding: 20px;
+.app-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
+  background-image: linear-gradient(
+    to bottom,
+    #ffffff,
+    #cffcf1,
+    #cffcf1,
+    #defafe
+  );
+}
+
+@media screen and (min-width: 768px) {
+  .app-container {
+    background-image: linear-gradient(
+      to right,
+      #ffffff,
+      #cffcf1,
+      #cffcf1,
+      #defafe
+    );
+  }
 }
 
 .heading {
-  font-size: 30px;
-  font-weight: 500;
+  color: #0f172a;
   font-family: 'Roboto';
-  color: #1e293b;
+  font-size: 32px;
+  font-weight: 500;
 }
 
-.timer-container {
+@media screen and (min-width: 768px) {
+  .heading {
+    font-size: 48px;
+  }
+}
+
+.digital-timer-container {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  width: 90%;
 }
 
-.image-container {
-  background-image: url('https://assets.ccbp.in/frontend/react-js/digital-timer-elapsed-bg.png');
-  background-size: cover;
-  width: 350px;
-  height: 350px;
+@media screen and (min-width: 768px) {
+  .digital-timer-container {
+    flex-direction: row;
+    max-width: 1140px;
+  }
+}
+
+.timer-display-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 320px;
+  height: 250px;
+  background-image: url('https://assets.ccbp.in/frontend/react-js/digital-timer-elapsed-bg.png');
+  background-size: cover;
+  background-position: center;
 }
 
-.stop-watch-container {
+@media (min-width: 576px) {
+  .timer-display-container {
+    width: 450px;
+    height: 320px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .timer-display-container {
+    width: 600px;
+    height: 450px;
+  }
+}
+
+@media (min-width: 992px) {
+  .timer-display-container {
+    width: 600px;
+    height: 600px;
+  }
+}
+
+.elapsed-time-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -50,100 +92,149 @@
   background-color: #ffffff;
   width: 100px;
   height: 100px;
-  border-radius: 50px;
+  border-radius: 100%;
 }
 
-.text-paused-running {
-  color: #000000;
-  font-size: 15px;
+@media (min-width: 576px) {
+  .elapsed-time-container {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .elapsed-time-container {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.elapsed-time {
+  color: #00d9f5;
   font-family: 'Roboto';
+  font-size: 28px;
   font-weight: bold;
-  margin-top: -50px;
-  padding: 10px;
+  margin: 0px;
 }
 
-.time-text {
-  font-size: 35px;
-  color: #00d9f5;
+@media screen and (min-width: 768px) {
+  .elapsed-time {
+    font-size: 48px;
+  }
+}
+
+.timer-state {
+  color: #1e293b;
   font-family: 'Roboto';
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0px;
 }
 
-.start-reset {
+@media screen and (min-width: 768px) {
+  .timer-state {
+    font-size: 24px;
+  }
+}
+
+.controls-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
 }
 
-.start-reset-image {
-  width: 25px;
-  height: 25px;
-  background-size: cover;
-  color: #00d9f5;
+.timer-controller-container {
+  display: flex;
+  align-items: center;
 }
 
-.start-reset-text {
-  font-size: 18px;
+.timer-controller-btn {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  margin-right: 16px;
+  margin-left: 16px;
+  padding: 0px;
+  cursor: pointer;
+  outline: none;
+}
+
+.timer-controller-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+}
+
+@media (min-width: 576px) {
+  .timer-controller-icon {
+    width: 36px;
+    height: 36px;
+    margin-right: 12px;
+  }
+}
+
+.timer-controller-label {
+  color: #1e293b;
+  font-family: 'Roboto';
+  font-size: 24px;
   font-weight: 500;
-  font-family: 'Roboto';
-  color: #000000;
 }
 
-.start-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+@media (min-width: 576px) {
+  .timer-controller-label {
+    font-size: 32px;
+  }
 }
 
-.reset-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.set-timer-container {
+.timer-limit-controller-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.set-timer-text {
-  font-size: 12px;
-  font-weight: bold;
+.limit-label {
+  color: #1e293b;
   font-family: 'Roboto';
-  color: #000000;
+  font-size: 16px;
+  font-weight: 500;
 }
 
-.buttons-container {
+.timer-limit-controller {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  margin-top: -20px;
 }
 
-.timer-text {
-  font-size: 25px;
-  font-weight: bold;
-  padding: 5px;
+.limit-controller-button {
+  color: #1e293b;
+  background-color: transparent;
+  font-family: 'Roboto';
+  font-size: 40px;
+  font-weight: 500;
+  border: none;
+  margin: 8px;
+  cursor: pointer;
+  outline: none;
+}
+
+.limit-label-and-value-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 8px;
+}
+
+.limit-value {
   text-align: center;
-  width: 75px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 0px;
-  color: #000000;
-  background-color: #00d9f5;
-}
-
-.button {
-  font-size: 20px;
-  font-weight: bold;
-  width: 25px;
-  height: 25px;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.button-start {
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
+  color: #1e293b;
+  background-image: linear-gradient(to right, #00f5a0, #00d9f5);
+  font-family: 'Roboto';
+  font-size: 32px;
+  font-weight: 500;
+  width: 100px;
+  border-radius: 8px;
+  margin: 0px;
+  padding: 8px;
 }
